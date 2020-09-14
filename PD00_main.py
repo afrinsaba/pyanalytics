@@ -16,7 +16,7 @@ mtcarsDF
 mtcarsDF.shape
 mtcarsDF.head(3)
 mtcarsDF.tail(4)
-mtcarsDF.describe
+mtcarsDF.describe()
 mtcarsDF.columns
 mtcarsDF.dtypes
 
@@ -25,9 +25,9 @@ type(mtcarsDF)
 
 mtcarsDF.select_dtypes(include=['int64'])
 mtcarsDF.select_dtypes(exclude=['int64'])
-mtcarsDF.isna()
-mtcarsDF.notna()
-id(mtcarsDF)
+mtcarsDF.isna() #missing value
+mtcarsDF.notna() #no missing value (na)
+id(mtcarsDF) #dataframe identity
 mtcars.empty
 mtcars.size
 mtcars.ndim
@@ -36,21 +36,21 @@ mtcars.values
 
 #%%% access DF
 mtcarsDF[0:5]
-mtcarsDF[0:5,0:3]
+#mtcarsDF[0:5,0:3] #error
 
 #single value: at
 mtcarsDF.at['Mazda RX4', 'mpg']
-mtcarsDF.at['Mazda RX4', 'mpg']
+mtcarsDF.at['Mazda RX4', 'cyl']
 
 #single values : iat : integer
 mtcarsDF.iat[0,0]
-mtcarsDF.iat[0,0:5]
-
+mtcarsDF.iat[0,0:5] #error
+mtcarsDF.head()
 #set of values : loc : index values
 mtcarsDF.index
-mtcarsDF.loc[['Mazda 4X4']]
-mtcarsDF.loc['Mazda 4X4', ['mpg']]
-mtcarsDF.loc[7:9]
+mtcarsDF.loc[['Mazda RX4']]
+mtcarsDF.loc['Mazda RX4', ['mpg']]
+mtcarsDF.loc[7:9] #error
 
 #iloc
 mtcarsDF
@@ -64,6 +64,7 @@ mtcarsDF.loc['Mazda RX4':'Datsun 710']  #difficult to implement
 
 mtcarsDF.iloc[1:10, 1:5]
 mtcarsDF.iloc[1:10:2, 1:5:2]
+
 mtcarsDF.iloc[1::2, 1::2]
 mtcarsDF.iloc[0]
 mtcarsDF.iloc[1:5]
@@ -81,8 +82,8 @@ mtcarsDF.iloc[0:3]
 #filter
 mtcarsDF.filter(['gear', 'am'])
 mtcarsDF.filter(regex = '[gGa]')  #small or big G or a in the column name
-
-mtcarsDF.filter(items=['gear','am'])
+mtcarsDF.filter(regex = 'Mazda RX4',axis=0)
+mtcarsDF.filter(items=['gear','am']) #regex= regular expression
 mtcarsDF.filter(regex='Toyota', axis=0)  #rownames axis=0
 mtcarsDF.filter(regex='am', axis=1)  #colnames axis=1
 
@@ -90,13 +91,14 @@ mtcarsDF.filter(regex='am', axis=1)  #colnames axis=1
 mtcarsDF.mean(axis=0)
 mtcarsDF.mean(axis=1)
 mtcarsDF.kurt(axis=0)
+
 mtcarsDF.kurt(axis=1)
 mtcarsDF.max(axis=0)
 mtcarsDF.max(axis=1)
 mtcarsDF.rank(axis=0)
 mtcarsDF.skew(axis=0)
 mtcarsDF.skew(axis=1)
-
+mtcarsDF
 
 
 #%%filter

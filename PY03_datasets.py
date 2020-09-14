@@ -5,13 +5,13 @@
 
 import numpy as np
 import pandas as pd
-
 import pydataset
+from pydataset import data
 data('iris')
 data('iris', show_doc=True)#help
 
 #better way 
-from pydataset import data
+
 data()
 alldatasets = data().copy()
 type(alldatasets)
